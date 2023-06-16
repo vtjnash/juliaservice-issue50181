@@ -8,7 +8,6 @@ USER app
 ENV HOME=/home/app
 WORKDIR $HOME
 
-# Instantiate Julia project dependencies in development
 RUN julia -t auto -e 'using Pkg; Pkg.add("HTTP"); Pkg.precompile()'
 
 COPY . ./
