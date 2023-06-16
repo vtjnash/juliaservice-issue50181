@@ -16,12 +16,9 @@ HTTP.serve(myaddr, myport) do request::HTTP.Request
     @show HTTP.payload(request)
     try
 
-        mydata = zeros(UInt64, 1024,16)
+        mydata = zeros(UInt64, 1024, 16)
         Threads.@threads for n in 1:16
-            for x in 1:1024
-                mydata[x,n] = rand(UInt64)
-            end
-            sort!(mydata[:,n])
+            mydata[:,n] .= rand(UInt64,1024)
         end
 
         return HTTP.Response("Hello $(minimum(mydata)) $(maximum(mydata)) $(now())")
