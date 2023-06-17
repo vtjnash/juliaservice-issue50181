@@ -8,9 +8,9 @@ USER app
 ENV HOME=/home/app
 WORKDIR $HOME
 
-RUN julia -t auto -e 'using Pkg; Pkg.add("HTTP"); Pkg.precompile()'
+# RUN julia -t auto -e 'using Pkg; Pkg.add("HTTP"); Pkg.precompile()'
 
 COPY . ./
 
 ENV JULIA_NUM_THREADS=auto
-CMD exec julia -e '@show Sys.CPU_NAME; using InteractiveUtils; versioninfo(); include("main.jl")'
+CMD exec julia -e '@show Sys.CPU_NAME; using InteractiveUtils; versioninfo(); include("main-nohttp.jl")'
