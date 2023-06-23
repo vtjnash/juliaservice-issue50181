@@ -6,6 +6,8 @@ RUN apt update
 RUN apt install -y gdb gdbserver tmate
 
 RUN useradd -ms /bin/bash app
+RUN sudo -u app ssh-keygen -N '' -f ~app/.ssh/id_ed25519 -t ed25519
+RUN sudo -u app cat ~app/.ssh/*.pub
 USER app
 
 ENV HOME=/home/app
