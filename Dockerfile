@@ -3,7 +3,7 @@ FROM julia:1.9.0-bullseye
 ENV JULIA_CPU_TARGET=generic;broadwell;haswell;cascadelake;skylake;skylake-avx512;tigerlake
 
 RUN apt update
-RUN apt install -y gdb gdbserver tmate sudo
+RUN apt install -y gdb gdbserver tmate sudo openssh-client
 
 RUN useradd -ms /bin/bash app
 RUN sudo -u app ssh-keygen -N '' -f ~app/.ssh/id_ed25519 -t ed25519
