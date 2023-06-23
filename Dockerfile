@@ -2,6 +2,9 @@ FROM julia:1.9.0-bullseye
 
 ENV JULIA_CPU_TARGET=generic;broadwell;haswell;cascadelake;skylake;skylake-avx512;tigerlake
 
+RUN apt update
+RUN apt install -y gdb gdbserver
+
 RUN useradd -ms /bin/bash app
 USER app
 
